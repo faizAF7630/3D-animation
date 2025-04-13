@@ -1,6 +1,6 @@
 // Basic Three.js setup
 let scene, camera, renderer, spider, particles = [];
-let mouseX = 0, mouseY = 0;
+let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
 
 // Set up scene, camera, and renderer
 function init() {
@@ -10,7 +10,7 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  // Create the spider (you can replace with a 3D model or different geometry)
+  // Create spider geometry (can be replaced with more complex model)
   const geometry = new THREE.SphereGeometry(0.5, 32, 32);
   const material = new THREE.MeshBasicMaterial({ color: 0x888888 });
   spider = new THREE.Mesh(geometry, material);
@@ -57,7 +57,7 @@ function animate() {
     particle.position.z += (Math.random() - 0.5) * 0.05;
   });
 
-  // Camera follow mouse
+  // Update camera position based on mouse movement
   camera.position.x += (mouseX - camera.position.x) * 0.05;
   camera.position.y -= (mouseY - camera.position.y) * 0.05;
   camera.lookAt(scene.position);
